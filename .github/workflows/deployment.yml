@@ -1,5 +1,8 @@
 name: "deployment"
-on: ["push", "workflow_dispatch"]
+on:
+  push:
+    branches:
+      - master
 jobs:
   lint:
     runs-on: ubuntu-latest
@@ -39,5 +42,7 @@ jobs:
           node-version: 18
       - name: Install dependencies
         run: npm ci
-      - name: Run tests
+      - name: Build code
         run: npm run build
+      - name: Deploy code
+        run: echo "deploying.."
